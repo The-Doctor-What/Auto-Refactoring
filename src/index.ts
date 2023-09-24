@@ -1,10 +1,7 @@
-import moment from "moment";
 import fs from "fs";
 import 'dotenv/config.js'
 
-moment.locale("ru");
-
-async function teleport(extensions, path, file) {
+async function teleport(extensions: string[], path: string, file: any) {
     const folder = process.env.FOLDER
     for (const extension of extensions) {
         if (file.endsWith(extension)) {
@@ -28,13 +25,13 @@ async function main() {
 
     for (const file of files) {
 
-        await teleport(['.jpg', '.png', '.jpeg', '.gif', '.svg'], 'images', file).then()
-        await teleport(['.mp4'], 'videos', file).then()
-        await teleport(['.mp3'], 'audios', file).then()
-        await teleport(['.doc', '.docx', '.txt', '.pdf', '.xls', '.xlsx', '.ppt', '.pptx'], 'documents', file).then()
-        await teleport(['.zip', '.rar', '.7z'], 'archives', file).then()
-        await teleport(['.exe', '.msi'], 'programs', file).then()
-        await teleport(['.torrent'], 'torrents', file).then()
+        await teleport(['.jpg', '.png', '.jpeg', '.gif', '.svg'], 'images', file)
+        await teleport(['.mp4', '.avi', '.mov'], 'videos', file)
+        await teleport(['.mp3', '.wav', '.ogg'], 'audios', file)
+        await teleport(['.doc', '.docx', '.txt', '.pdf', '.xls', '.xlsx', '.ppt', '.pptx', '.odt'], 'documents', file)
+        await teleport(['.zip', '.rar', '.7z', '.tar'], 'archives', file)
+        await teleport(['.exe', '.msi', '.app'], 'programs', file)
+        await teleport(['.torrent', '.ac3'], 'torrents', file)
 
     }
 
