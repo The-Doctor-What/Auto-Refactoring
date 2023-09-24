@@ -1,0 +1,15 @@
+{
+    "images": [".jpg", ".png", ".jpeg", ".gif", ".svg"],
+    "videos": [".mp4", ".avi", ".mov"],
+    "audios": [".mp3", ".wav", ".ogg"],
+    "documents": [".doc", ".docx", ".txt", ".pdf", ".xls", ".xlsx", ".ppt", ".pptx", ".odt"],
+    "archives": [".zip", ".rar", ".7z", ".tar"],
+    "programs": [".exe", ".msi", ".msix", ".msixbundle"],
+    "torrents": [".torrent", ".ac3"],
+    "fonts": [".ttf", ".otf", ".woff", ".woff2"],
+    "databases": [".sql", ".db"],
+    "logs": [".log", ".logs"],
+    "development": [".js", ".ts", ".jsx", ".tsx", ".json", ".py", ".php", ".html", ".css", ".scss", ".sass", ".less"],
+    "samp": [".asi", ".cs", ".lua", ".sf"],
+    "android apps": [".apk"]
+}
