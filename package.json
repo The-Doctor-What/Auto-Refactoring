@@ -8,6 +8,7 @@
         "run": "node ."
     },
     "dependencies": {
+        "ansi": "^0.3.1",
         "dedent-js": "^1.0.1",
         "dotenv": "^16.0.1",
         "prequest": "^1.0.0",
