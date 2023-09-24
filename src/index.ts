@@ -1,12 +1,13 @@
 import fs from "fs";
-import 'dotenv/config.js'
+import 'dotenv/config.js';
 
-async function teleport(extensions: string[], path: string, folder: string, file: any) {
+async function teleport(extensions: string[], path: string, folder: string, file: string) {
     try {
         for (const extension of extensions) {
             if (file.endsWith(extension)) {
-                if (!fs.existsSync(`${path}/${folder}`)) fs.mkdirSync(`${path}/${folder}`);
-                fs.renameSync(`${path}/${file}`, `${path}/${folder}/${file}`);
+                const folderPath = `${path}/${folder}`;
+                if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath, { recursive: true });
+                fs.renameSync(`${path}/${file}`, `${folderPath}/${file}`);
                 console.log(`Logs » Файл "${file}" перемещен в папку ${folder}`);
             }
         }
@@ -25,7 +26,7 @@ async function main() {
         console.log(`Logs » Путь: ${path}`);
 
         const files = fs.readdirSync(path);
-        if (!files) return console.log(`Logs » Файлы не найдены`);
+        if (!files || files.length === 0) return console.log(`Logs » Файлы не найдены`);
 
         const extensionsToCategories = {
             images: ['.jpg', '.png', '.jpeg', '.gif', '.svg'],
@@ -33,7 +34,7 @@ async function main() {
             audios: ['.mp3', '.wav', '.ogg'],
             documents: ['.doc', '.docx', '.txt', '.pdf', '.xls', '.xlsx', '.ppt', '.pptx', '.odt'],
             archives: ['.zip', '.rar', '.7z', '.tar'],
-            programs: ['.exe', '.msi', '.msix'],
+            programs: ['.exe', '.msi', '.msix', '.msixbundle'],
             torrents: ['.torrent', '.ac3'],
             fonts: ['.ttf', '.otf', '.woff', '.woff2'],
             databases: ['.sql', '.db'],
@@ -42,13 +43,11 @@ async function main() {
             samp: ['.asi', '.cs', '.lua', '.sf'],
         };
 
-        const promises = files.map(async (file) => {
+        for (const file of files) {
             for (const [category, extensions] of Object.entries(extensionsToCategories)) {
                 await teleport(extensions, path, category, file);
             }
-        });
-
-        await Promise.all(promises);
+        }
 
         console.log(`Logs » Завершение работы...`);
     } catch (error) {

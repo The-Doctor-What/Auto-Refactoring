@@ -1,6 +1,7 @@
-### Auto Refactoring
+## Auto Refactoring
+#### by The Doctor What
 
-Сортировщик файлов в папке по расширениям
+###### Сортировщик файлов в папке по расширениям
 
 ### Установка
 
@@ -10,9 +11,9 @@ yarn install
 
 Далее в файле `.env` указать путь к папке, которую необходимо отсортировать
 
-Пример:
+#### Пример:
 ```sh
-FOLDER=C:\Users\user\Desktop\test
+FOLDER=C:\Users\Mary\Desktop\folder
 ```
 
 ### Запуск
